@@ -1,4 +1,4 @@
-# This is the backend for Ecoleta -
+# This is the backend for Ecoleta
 
 A platform (web and mobile) that creates a bridge between people who need to dispose of electronic waste and the collection companies.
 
@@ -10,7 +10,7 @@ The backend uses SQLite 3 with Knex library as query builder
 Run
 `npm run knex:migrate`
 
-### o seed the database
+### To seed the database
 Run
 `npm run knex:seed`
 
