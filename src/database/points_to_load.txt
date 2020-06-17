@@ -1,0 +1,119 @@
+{
+  "point": {
+    "id": 1,
+    "name": "Alvorada Supermercado",
+    "email": "contato1@mercado.com",
+    "whatsapp": "03191217340",
+    "latitude": -19.9089879,
+    "longitude": -43.9186713,
+    "city": "Belo Horizonte",
+    "uf": "MG"
+  },
+  "items": [
+    {
+      "title": "Lâmpadas"
+    },
+    {
+      "title": "Pilhas e Baterias"
+    }
+  ]
+}
+
+
+{
+  "point": {
+    "id": 2,
+    "name": "Supermercado Roma",
+    "email": "contato1@mercado.com",
+    "whatsapp": "03191217340",
+    "latitude": -19.8849652,
+    "longitude": -43.9061073,
+    "city": "Belo Horizonte",
+    "uf": "MG"
+  },
+  "items": [
+    {
+      "title": "Lâmpadas"
+    },
+    {
+      "title": "Pilhas e Baterias"
+    }
+  ]
+}
+
+
+{
+  "point": {
+    "id": 3,
+    "name": "Dia Supermercado",
+    "latitude": -19.8752876,
+    "longitude": -43.9144345,
+    "city": "Belo Horizonte",
+    "uf": "MG"
+  },
+  "items": [
+    {
+      "title": "Papeis e papelão"
+    },
+    {
+      "title": "Resíduos eletrônicos"
+    },
+    {
+      "title": "Resíduos orgânicos"
+    },
+    {
+      "title": "Óleo de cozinha"
+    }
+  ]
+}
+
+
+{
+  "point": {
+    "id": 4,
+    "name": "Padaria Dandão",
+    "email": "contato1@mercado.com",
+    "whatsapp": "03191217340",
+    "latitude": -20.4707238,
+    "longitude": -45.9639437,
+    "city": "Piumhi",
+    "uf": "MG"
+  },
+  "items": [
+    {
+      "title": "Lâmpadas"
+    },
+    {
+      "title": "Pilhas e Baterias"
+    },
+    {
+      "title": "Papeis e papelão"
+    }
+  ]
+}
+
+
+
+{
+  "point": {
+    "id": 5,
+    "name": "Linguiçaria Coelho E Vidal",
+    "email": "contato1@mercado.com",
+    "whatsapp": "03191217340",
+    "latitude": -20.4754493,
+    "longitude": -45.9640836,
+    "city": "Piumhi",
+    "uf": "MG"
+  },
+  "items": [
+    {
+      "title": "Papeis e papelão"
+    },
+    {
+      "title": "Resíduos eletrônicos"
+    },
+    {
+      "title": "Resíduos orgânicos"
+    }
+  ]
+}

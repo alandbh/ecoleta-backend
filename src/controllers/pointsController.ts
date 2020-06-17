@@ -5,6 +5,7 @@ class PointsController {
     // Método para a criação de Points
     async create(request: Request, response: Response) {
         // Recebendo os dados vindos no body da requisição HTTP
+
         const {
             name,
             email,
@@ -21,8 +22,7 @@ class PointsController {
 
         // Inserindo os dados recebidos no banco usando o knex
         const point = {
-            image:
-                "https://images.unsplash.com/photo-1506484381205-f7945653044d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60",
+            image: request.file.filename,
             name,
             email,
             whatsapp,
@@ -37,12 +37,19 @@ class PointsController {
 
         // Criando o relacionamento do Point com a tabela Items
         // Mapeia os items vindos da requisição HTTP atrelando cada item_id com o novo id criado pela requisiçao
-        const pointItems = items.map((item_id: Number) => {
-            return {
-                item_id,
-                point_id: point_id, // Quando o knex injeta um item na tabela ele retorna o ID único que foi gerado automaticamente (linha 39)
-            };
-        });
+
+        // UPDATE,
+        // Com a mudança no formato de envio de JSON para Mutipart Form (para comportar o recebimento de arquivos)...
+        // ... os itens estão vindo como uma string separada por virgula. Por isso o Split e o Trim antes do Map
+        const pointItems = items
+            .split(",")
+            .map((item: string) => Number(item.trim()))
+            .map((item_id: number) => {
+                return {
+                    item_id,
+                    point_id: point_id, // Quando o knex injeta um item na tabela ele retorna o ID único que foi gerado automaticamente (linha 39)
+                };
+            });
 
         // Insere no banco, na tabela "point_items"
         await trx("point_items").insert(pointItems);
@@ -73,8 +80,13 @@ class PointsController {
             .where("point_items.point_id", id) // Aonde o "point_id" da tabela "point_items" seja igual ao "id" que chegou via HHTP (linha 60 = const { id } = request.params;)
             .select("items.title"); // Apenas para mostrar só o título em vez do objeto inteiro
 
+        const serializedPoint = {
+            ...point,
+            image_url: `http://192.168.0.6:3333/uploads/${point.image}`,
+        };
+
         // faz a query no banco buscando pelo id
-        return response.json({ point, items });
+        return response.json({ point: serializedPoint, items });
     }
 
     // Método para listar todos os Points
@@ -93,12 +105,20 @@ class PointsController {
             .distinct()
             .select("points.*");
 
+        // Para iserir o caminho da imagem no objeto do Point
+        const serializedPoints = points.map((point) => {
+            return {
+                ...point,
+                image_url: `http://192.168.0.6:3333/uploads/${point.image}`,
+            };
+        });
+
         // const points = await knex("points")
         //     .where("city", String(city))
         //     .where("uf", String(uf))
         //     .select("points.*");
 
-        return response.json(points);
+        return response.json(serializedPoints);
     }
 }
 

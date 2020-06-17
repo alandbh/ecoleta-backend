@@ -5,10 +5,16 @@ import express from "express";
 // Importando a classe da rota
 import PointsController from "./controllers/pointsController";
 import ItemsController from "./controllers/itemsController";
+import multer from "multer";
+import multerConfig from "./config/multer";
+
+const routes = express.Router();
+
+// Lidando com upload usando o Multer
+const upload = multer(multerConfig);
 
 const pointsController = new PointsController();
 const itemsController = new ItemsController();
-const routes = express.Router();
 
 // Listando os items
 routes.get("/items", itemsController.index);
@@ -18,6 +24,7 @@ routes.get("/points", pointsController.index);
 routes.get("/points/:id", pointsController.show);
 
 // Cadastrando os pontos de coleta
-routes.post("/points", pointsController.create);
+// o segundo parametro ( upload.single("image") )
+routes.post("/points", upload.single("image"), pointsController.create);
 
 export default routes;
